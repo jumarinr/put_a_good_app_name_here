@@ -13,7 +13,8 @@
     "meteor-node-stubs": "^0.4.1",
     "vue": "^2.5.17",
     "vue-meteor-tracker": "^2.0.0-beta.3",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue-template-compiler": "^2.5.17"
   },
   "meteor": {
     "mainModule": {
