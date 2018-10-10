@@ -6,7 +6,7 @@ authKey: "9ECB6530591C42139C1620264B3195DF"
 }; // Credentials.
 const pal = new paladins(config.devId, config.authKey); // Give our credentials.
 var player;
-var getPlayer = function(dato) {
+var getPlayerStatus = function(dato) {
   player=dato
 }
 // Connect to Paladins API by creating a session.
@@ -15,14 +15,13 @@ pal.connect('PC', (err, res) => {
   if (!err) {
     var sessionId = res;
     // Call /getPlayer using the wrapper.
-    pal.getPlayer(sessionId, 'PC', player, (err, res) => {
+    pal.getPlayerStatus(sessionId, 'PC', player, (err, res) => {
       if (!err) {
         const content = JSON.stringify(res);
-
-        fs.writeFile("./metodos/salida/getPlayer.json", content, 'utf8', function(err) {
+        fs.writeFile("./metodos/salida/getPlayerStatus.json", content, 'utf8', function(err) {
         });
       }
     });
   }
 });
-module.exports = getPlayer
+module.exports = getPlayerStatus
