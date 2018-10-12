@@ -6,7 +6,7 @@ var config = {
 }; //credenciales
 const pal = new paladins(config.devId, config.authKey); // Give our credentials.
 var player;
-var getChampionRanks = function(dato) {
+var getPlayerLoadouts = function(dato) {
   player = dato
 } // metodo para llamar un usuario de paladins
 pal.connect('PC', (err, res) => {
@@ -14,13 +14,13 @@ pal.connect('PC', (err, res) => {
   if (!err) {
     var sessionId = res;
     // llama al metodo getChampionRanks del api de paladins-
-    pal.getChampionRanks(sessionId, 'PC', player, (err, res) => {
+    pal.getPlayerLoadouts(sessionId, 'PC', player, (err, res) => {
       if (!err) {
         const content = JSON.stringify(res);
-        fs.writeFile("./metodos/salida/getChampionRanks.json", content, 'utf8', function(err) { // lo que nos saca el metodo
+        fs.writeFile("./server/program/metodos/salida/getPlayerLoadouts.json", content, 'utf8', function(err) { // lo que nos saca el metodo
         });
       }
     });
   }
 });
-module.exports = getChampionRanks; //exportamos :v
+module.exports = getPlayerLoadouts; //exportamos :v
