@@ -8,3 +8,8 @@ var getMatchHistory=require('./server/program/metodos/getMatchHistory'); // dato
 var getPlayer = require('./server/program/metodos/getPlayer'); // dato de entrada = usuario de paladins
 var getPlayerLoadouts = require('./server/program/metodos/getPlayerLoadouts');
 var getPlayerStatus = require('./server/program/metodos/getPlayerStatus'); //dato de entrada= usuario de paladins
+import MY_JSON from './server/program/metodos/salida/getItems.json'
+          export default{
+                 myJson: MY_JSON
+          }
+var x = MY_JSON

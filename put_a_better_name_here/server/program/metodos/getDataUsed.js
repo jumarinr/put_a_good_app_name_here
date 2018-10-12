@@ -5,7 +5,9 @@ var config = {
   authKey: "9ECB6530591C42139C1620264B3195DF"
 }; // Credentials.
 const pal = new paladins(config.devId, config.authKey); // Give our credentials.
-var getDataUsed = 'metodo invocado satisfactoriamente';
+var getDataUsed = function() {
+  return console.log("Metodo bien invocado")
+}
 // Connect to Paladins API by creating a session.
 pal.connect('PC', (err, res) => {
   // Connection worked.
