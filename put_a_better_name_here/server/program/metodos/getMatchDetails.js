@@ -6,21 +6,24 @@ var config = {
 };
 const pal = new paladins(config.devId, config.authKey); // Give our credentials.
 var matchId;
-var getMatchDetails = function(dato) {
+var variable;
+var getMatchDetails = function(dato, dato1) {
   matchId = dato
-}
-pal.connect('PC', (err, res) => {
-  // Connection worked.
-  if (!err) {
-    var sessionId = res;
-    // Call /GetMatchHistory using the wrapper.
-    pal.getMatchDetails(sessionId, 'PC', matchId, (err, res) => {
+  variable = dato1
+  if (variable) {
+    pal.connect('PC', (err, res) => {
+      // Connection worked.
       if (!err) {
-        const content = JSON.stringify(res);
-        fs.writeFile("./server/program/metodos/salida/getMatchDetails.json", content, 'utf8', function(err) {
+        var sessionId = res;
+        // Call /GetMatchHistory using the wrapper.
+        pal.getMatchDetails(sessionId, 'PC', matchId, (err, res) => {
+          if (!err) {
+            const content = JSON.stringify(res);
+            fs.writeFile("./server/program/metodos/salida/getMatchDetails.json", content, 'utf8', function(err) {});
+          }
         });
       }
     });
   }
-});
+}
 module.exports = getMatchDetails;

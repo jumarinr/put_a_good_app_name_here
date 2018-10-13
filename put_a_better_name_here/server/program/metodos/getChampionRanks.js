@@ -6,21 +6,28 @@ var config = {
 }; //credenciales
 const pal = new paladins(config.devId, config.authKey); // Give our credentials.
 var player;
-var getChampionRanks = function(dato) {
-  player = dato
-} // metodo para llamar un usuario de paladins
-pal.connect('PC', (err, res) => {
-  // La coneccion funciono
-  if (!err) {
-    var sessionId = res;
-    // llama al metodo getChampionRanks del api de paladins-
-    pal.getChampionRanks(sessionId, 'PC', player, (err, res) => {
+var variable;
+var getChampionRanks = function(dato, dato1) {
+  player = dato;
+  variable = dato1;
+  if (variable) {
+    pal.connect('PC', (err, res) => {
+      // La coneccion funciono
       if (!err) {
-        const content = JSON.stringify(res);
-        fs.writeFile("./server/program/metodos/salida/getChampionRanks.json", content, 'utf8', function(err) { // lo que nos saca el metodo
+        var sessionId = res;
+        // llama al metodo getChampionRanks del api de paladins-
+        pal.getChampionRanks(sessionId, 'PC', player, (err, res) => {
+          if (!err) {
+            const content = JSON.stringify(res);
+            fs.writeFile("./server/program/metodos/salida/getChampionRanks.json", content, 'utf8', function(err) { // lo que nos saca el metodo
+            });
+          }
         });
       }
     });
   }
-});
+  else{
+    return console.log("inserte true");
+  }
+}
 module.exports = getChampionRanks; //exportamos :v

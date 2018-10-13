@@ -5,11 +5,12 @@ var config = {
   authKey: "9ECB6530591C42139C1620264B3195DF"
 }; // Credentials.
 const pal = new paladins(config.devId, config.authKey); // Give our credentials.
-var getItems = function() {
-  return console.log("metodo bien invocado :D")
-}
-// Connect to Paladins API by creating a session.
-pal.connect('PC', (err, res) => {
+var variable;
+var getItems = function(dato) {
+  variable = dato
+  if (variable) {
+    // Connect to Paladins API by creating a session.
+    pal.connect('PC', (err, res) => {
       // Connection worked.
       if (!err) {
         var sessionId = res;
@@ -19,5 +20,9 @@ pal.connect('PC', (err, res) => {
             const content = JSON.stringify(res);
             fs.writeFile("./server/program/metodos/salida/getItems.json", content, 'utf8', function(err) {});
           }
-        })};
-      }); module.exports = getItems;
+        })
+      };
+    });
+  }
+}
+module.exports = getItems;
