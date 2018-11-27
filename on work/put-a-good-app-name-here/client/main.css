@@ -1,0 +1,43 @@
+body {
+  background: #1e130c; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #9a8478,
+    #1e130c
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #9a8478,
+    #1e130c
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.login {
+  margin: 15px -115px 10px;
+  width: 300px;
+  padding: 30px 25px;
+  background: white;
+  border: 1px;
+}
+h1.login-title {
+  margin: -28px -25px 2px;
+  padding: 15px 20px;
+  line-height: 30px;
+  font-size: 20px;
+  font-weight: 300;
+}
+label.espacio {
+  padding: 1px 1px;
+  margin-top: 4px;
+}
+code.Color {
+  color: black;
+}
+.Cuerpo {
+  margin: -352px 345px 1px;
+  padding: 30px 25px;
+  width: 800px;
+  height: 550px;
+  background: white;
+  border: 1px;
+  display: block;
+}
