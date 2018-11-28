@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import Formulario from "../components/Formulario";
-import { withTracker } from "meteor/react-meteor-data";
 import { playerInfo } from "../api/playerInfo";
 import { DatosUsuario } from "../components/DatosUsuario";
-
-import { PlayerInfo } from "../api/playerInfo";
 
 import { player } from "./player.json";
 
@@ -17,13 +14,6 @@ class App extends Component {
     };
     this.añadirUsuario = this.añadirUsuario.bind(this);
     this.pruena = this.prueba.bind(this);
-    this.renderPLayers = this.renderPLayers(this);
-  }
-  renderPLayers() {
-    const { playerinfo } = this.props;
-    return playerinfo.map(playerInfo => (
-      <PlayerInfo key={playerinfo._id} playerinfo={playerInfo} />
-    ));
   }
   añadirUsuario(todo) {
     this.setState({
@@ -37,20 +27,13 @@ class App extends Component {
     return (
       <div>
         <div className="container">
-          <Formulario
-            onAddPlayer={this.añadirUsuario}
-            onLoadStart={this.prueba}
-          />
+          <Formulario />
         </div>
         <div className="Cuerpo">
-          <div className="row">{this.renderPLayers()}</div>
+          <div className="row">{new Date()}</div>
         </div>
       </div>
     );
   }
 }
-export default withTracker(() => {
-  return {
-    playerinfo: PlayerInfo.find({}).fetch()
-  };
-})(App);
+export default App;

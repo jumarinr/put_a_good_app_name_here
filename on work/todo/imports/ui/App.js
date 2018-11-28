@@ -61,7 +61,7 @@ class App extends Component {
               type="checkbox"
               readonly
               checked={hideCompleted}
-              onClick={this.toggleHideCompleted}
+              onChange={this.toggleHideCompleted}
             />
             Ocultar tareas completadas 😁
           </label>
