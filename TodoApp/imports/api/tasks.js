@@ -30,8 +30,8 @@ Meteor.methods({
     Tasks.insert({
       text,
       createdAt: new Date(),
-      owner: this.userId,
-      username: Meteor.users.findOne(this.userId).username
+      owner: this.userId, //user id que creo para registrarse
+      username: Meteor.users.findOne(this.userId).username //username con el que se registro
     });
   },
   //Estandar para borrar la tarea
