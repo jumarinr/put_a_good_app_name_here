@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { Meteor } from "meteor/meteor";
-import { Tasks } from "../api/tasks.js";
-import classnames from "classnames";
+import React, { Component } from "react"; //importamos React y Component
+import { Meteor } from "meteor/meteor"; // importamos meteor
+import { Tasks } from "../api/tasks.js"; //importamos Tasks
+import classnames from "classnames"; //Importamos classnames
 
 // Componente Task, representa cada item tas todo
 export default class Task extends Component {
