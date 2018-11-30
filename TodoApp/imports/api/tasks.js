@@ -1,17 +1,24 @@
-import { Meteor } from "meteor/meteor";
-import { Mongo } from "meteor/mongo";
-import { check } from "meteor/check";
+import { Meteor } from "meteor/meteor"; //importamos meteor
+import { Mongo } from "meteor/mongo"; //importamos Mongo
+import { check } from "meteor/check"; //importamos la funcion check
 
+//exportamos una colleccion de mongo llamada tasks
 export const Tasks = new Mongo.Collection("tasks");
 //comprobamos que estemos en el servidor
 if (Meteor.isServer) {
   // Esto solo corre en el servidor, por eso lo exportamos alli.
-  Meteor.publish("tasks", function tasksPublication() { //publica en el cliente la tarea
-    return Tasks.find(); 
+  Meteor.publish("tasks", function tasksPublication() {
+    //publica en el cliente la tarea
+
+    return Tasks.find({
+      //busca los documentos de esa coleccion y los retorna
+      $or: [{ private: { $ne: true } }, { owner: this.userId }] //comprueba si las tareas estan privadas
+    });
   });
 }
 
 Meteor.methods({
+  //con esto definimos funciones que pueden ser invocadas por el cliente
   "tasks.insert"(text) {
     check(text, String);
 
@@ -41,8 +48,8 @@ Meteor.methods({
     //hace un update al estado de las tareas
     Tasks.update(taskId, { $set: { checked: setChecked } });
   },
-  //se encarga de volver privadas o no las tareas
   "tasks.setPrivate"(taskId, setToPrivate) {
+    //se encarga de volver privadas o no las tareas
     check(taskId, String);
     check(setToPrivate, Boolean);
 
@@ -51,7 +58,7 @@ Meteor.methods({
     // Se asegura que solo el usuario que escribio la tarea puede cambiar si es publica o privada
     if (task.owner !== this.userId) {
       throw new Meteor.Error("not-authorized");
-    } 
+    }
     //Se actualiza tasks
     Tasks.update(taskId, { $set: { private: setToPrivate } });
   }
